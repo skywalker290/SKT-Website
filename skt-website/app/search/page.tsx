@@ -20,6 +20,7 @@ export default function SearchPage({
       price: 1250,
       rating: 4.6,
       seats: 14,
+      totalSeats: 36,
       images: [
         "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
@@ -35,6 +36,7 @@ export default function SearchPage({
       price: 650,
       rating: 4.1,
       seats: 28,
+      totalSeats: 50,
       images: [
         "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop",
@@ -50,6 +52,7 @@ export default function SearchPage({
       price: 1600,
       rating: 4.9,
       seats: 8,
+      totalSeats: 45,
       images: [
         "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1494515855673-b841b02bb0c1?q=80&w=2070&auto=format&fit=crop",
@@ -95,18 +98,18 @@ export default function SearchPage({
                       ★ {bus.rating}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-500 mb-4">{bus.type}</p>
-                  
+                  <p className="text-sm text-gray-500">{bus.type}</p>
+                  <p className="text-sm text-gray-500 mb-4">Capacity: {bus.totalSeats} Seats</p>
                 </div>
 
                 {/* Price & Book */}
                 <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4 border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
                   <div className="text-left md:text-right">
                     <p className="text-2xl font-bold text-gray-900">₹{bus.price}</p>
-                    <p className="text-xs text-gray-500">{bus.seats} seats left</p>
+                    <p className="text-xs text-gray-500">+ GST</p>
                   </div>
                   <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">
-                    Select Seat
+                    Book Bus
                   </button>
                 </div>
 
