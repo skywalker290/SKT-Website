@@ -31,7 +31,7 @@ export default function Home() {
       {/* We adjusted the negative margin (-mt) to match the new taller hero padding */}
       <div className="-mt-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="bg-white rounded-lg shadow-2xl p-6 sm:p-8">
-          <form className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-6 items-end">
+          <form action="/search" className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-6 items-end">
             
             {/* Origin Input */}
             <div>

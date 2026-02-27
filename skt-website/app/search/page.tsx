@@ -1,0 +1,120 @@
+import Link from "next/link";
+import ImageGallery from "./image-gallery";
+
+export default function SearchPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const origin = typeof searchParams.origin === 'string' ? searchParams.origin : '';
+  const destination = typeof searchParams.destination === 'string' ? searchParams.destination : '';
+  const departDate = typeof searchParams.departDate === 'string' ? searchParams.departDate : '';
+  const passengers = typeof searchParams.passengers === 'string' ? searchParams.passengers : '1';
+
+  // Mock Data for demonstration
+  const buses = [
+    {
+      id: 1,
+      operator: "SKT Express",
+      type: "AC Sleeper (2+1)",
+      price: 1250,
+      rating: 4.6,
+      seats: 14,
+      images: [
+        "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1494515855673-b841b02bb0c1?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1519302959554-a75be0afc82a?q=80&w=2084&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1532939163844-547f958e91b4?q=80&w=2084&auto=format&fit=crop"
+      ]
+    },
+    {
+      id: 2,
+      operator: "SKT Superfast",
+      type: "Non-AC Seater (2+2)",
+      price: 650,
+      rating: 4.1,
+      seats: 28,
+      images: [
+        "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1494515855673-b841b02bb0c1?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1519302959554-a75be0afc82a?q=80&w=2084&auto=format&fit=crop"
+      ]
+    },
+    {
+      id: 3,
+      operator: "SKT Premium Volvo",
+      type: "Volvo Multi-Axle AC",
+      price: 1600,
+      rating: 4.9,
+      seats: 8,
+      images: [
+        "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1494515855673-b841b02bb0c1?q=80&w=2070&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1532939163844-547f958e91b4?q=80&w=2084&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1509749837427-ac94a2553d0e?q=80&w=2070&auto=format&fit=crop"
+      ]
+    }
+  ];
+
+  return (
+    <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <Link href="/" className="text-blue-600 hover:text-blue-800 font-medium mb-4 inline-block">
+            &larr; Back to Search
+          </Link>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Available Buses
+          </h1>
+          <p className="mt-2 text-gray-600">
+            {origin && destination ? `${origin} to ${destination}` : 'Search Results'} 
+            {departDate && ` • ${departDate}`} 
+            {passengers && ` • ${passengers} Passenger(s)`}
+          </p>
+        </div>
+
+        {/* Bus List */}
+        <div className="space-y-4">
+          {buses.map((bus) => (
+            <div key={bus.id} className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                
+                {/* Bus Image */}
+                <ImageGallery images={bus.images} operator={bus.operator} />
+
+                {/* Bus Details */}
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-1">
+                    <h3 className="text-lg font-bold text-gray-900">{bus.operator}</h3>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                      ★ {bus.rating}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-500 mb-4">{bus.type}</p>
+                  
+                </div>
+
+                {/* Price & Book */}
+                <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4 border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
+                  <div className="text-left md:text-right">
+                    <p className="text-2xl font-bold text-gray-900">₹{bus.price}</p>
+                    <p className="text-xs text-gray-500">{bus.seats} seats left</p>
+                  </div>
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">
+                    Select Seat
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}
