@@ -1,15 +1,17 @@
 import Link from "next/link";
 import ImageGallery from "./image-gallery";
 
-export default function SearchPage({
+export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const origin = typeof searchParams.origin === 'string' ? searchParams.origin : '';
-  const destination = typeof searchParams.destination === 'string' ? searchParams.destination : '';
-  const departDate = typeof searchParams.departDate === 'string' ? searchParams.departDate : '';
-  const passengers = typeof searchParams.passengers === 'string' ? searchParams.passengers : '1';
+  const params = await searchParams;
+  const origin = typeof params.origin === 'string' ? params.origin : '';
+  const destination = typeof params.destination === 'string' ? params.destination : '';
+  const departDate = typeof params.departDate === 'string' ? params.departDate : '';
+  const passengers = typeof params.passengers === 'string' ? params.passengers : '1';
+  const passengerCount = parseInt(passengers) || 1;
 
   // Mock Data for demonstration
   const buses = [
@@ -63,6 +65,8 @@ export default function SearchPage({
     }
   ];
 
+  const filteredBuses = buses.filter(bus => bus.totalSeats >= passengerCount);
+
   return (
     <main className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
@@ -83,7 +87,12 @@ export default function SearchPage({
 
         {/* Bus List */}
         <div className="space-y-4">
-          {buses.map((bus) => (
+          {filteredBuses.length === 0 ? (
+            <div className="text-center py-12 bg-white rounded-lg border border-gray-200 shadow-sm">
+              <p className="text-gray-500 text-lg">No buses found with sufficient capacity.</p>
+            </div>
+          ) : (
+            filteredBuses.map((bus) => (
             <div key={bus.id} className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 
@@ -115,7 +124,8 @@ export default function SearchPage({
 
               </div>
             </div>
-          ))}
+          ))
+          )}
         </div>
       </div>
     </main>

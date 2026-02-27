@@ -40,6 +40,7 @@ export default function Home() {
               <input 
                 type="text" 
                 id="origin" 
+                name="origin"
                 defaultValue="Agra, Uttar Pradesh"
                 placeholder="e.g., New York" 
                 className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
@@ -52,6 +53,7 @@ export default function Home() {
               <input 
                 type="text" 
                 id="destination" 
+                name="destination"
                 placeholder="e.g., Delhi" 
                 className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
               />
@@ -63,6 +65,7 @@ export default function Home() {
               <input 
                 type="date" 
                 id="departDate" 
+                name="departDate"
                 className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
               />
             </div>
@@ -75,6 +78,7 @@ export default function Home() {
               <input 
                 type="date" 
                 id="returnDate" 
+                name="returnDate"
                 className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
               />
             </div>
@@ -85,6 +89,7 @@ export default function Home() {
               <input 
                 type="number" 
                 id="passengers" 
+                name="passengers"
                 min="1"
                 defaultValue="1"
                 className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6" 
