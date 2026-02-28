@@ -31,6 +31,13 @@ async function getRealDistance(from: string, to: string): Promise<number> {
   }
 }
 
+function calculateBusPrice(distance: number, mileage: number, busValue: number, days: number) {
+  const DIESEL_PRICE = 98.98;
+  const basePrice = (distance / mileage) * DIESEL_PRICE * busValue;
+  const extraCharge = days > 2 ? (days - 2) * 2500 : 0;
+  return Math.round(basePrice + extraCharge);
+}
+
 export default async function SearchPage({
   searchParams,
 }: {
@@ -40,9 +47,20 @@ export default async function SearchPage({
   const origin = typeof params.origin === 'string' ? params.origin : '';
   const destination = typeof params.destination === 'string' ? params.destination : '';
   const departDate = typeof params.departDate === 'string' ? params.departDate : '';
+  const returnDate = typeof params.returnDate === 'string' ? params.returnDate : '';
   const passengers = typeof params.passengers === 'string' ? params.passengers : '1';
   const passengerCount = parseInt(passengers) || 1;
   const distance = await getRealDistance(origin, destination);
+
+  let days = 1;
+  if (departDate && returnDate) {
+    const start = new Date(departDate);
+    const end = new Date(returnDate);
+    if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
+      const diffTime = Math.abs(end.getTime() - start.getTime());
+      days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+    }
+  }
 
   // Mock Data for demonstration
   const buses = [
@@ -50,10 +68,11 @@ export default async function SearchPage({
       id: 1,
       operator: "SKT Express",
       type: "AC Sleeper (2+1)",
-      price: 1250,
       rating: 4.6,
       seats: 14,
       totalSeats: 36,
+      mileage: 6,
+      bus_value: 4.2,
       images: [
         "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
@@ -66,10 +85,11 @@ export default async function SearchPage({
       id: 2,
       operator: "SKT Superfast",
       type: "Non-AC Seater (2+2)",
-      price: 650,
       rating: 4.1,
       seats: 28,
       totalSeats: 50,
+      mileage: 8,
+      bus_value: 3.8,
       images: [
         "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=2071&auto=format&fit=crop",
@@ -82,10 +102,11 @@ export default async function SearchPage({
       id: 3,
       operator: "SKT Premium Volvo",
       type: "Volvo Multi-Axle AC",
-      price: 1600,
       rating: 4.9,
       seats: 8,
       totalSeats: 45,
+      mileage: 5.5,
+      bus_value: 4.8,
       images: [
         "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop",
         "https://images.unsplash.com/photo-1494515855673-b841b02bb0c1?q=80&w=2070&auto=format&fit=crop",
@@ -124,7 +145,9 @@ export default async function SearchPage({
               <p className="text-gray-500 text-lg">No buses found with sufficient capacity.</p>
             </div>
           ) : (
-            filteredBuses.map((bus) => (
+            filteredBuses.map((bus) => {
+              const price = calculateBusPrice(distance, bus.mileage, bus.bus_value, days);
+              return (
             <div key={bus.id} className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 
@@ -140,13 +163,13 @@ export default async function SearchPage({
                     </span>
                   </div>
                   <p className="text-sm text-gray-500">{bus.type}</p>
-                  <p className="text-sm text-gray-500 mb-4">Capacity: {bus.totalSeats} Seats</p>
+                  <p className="text-sm text-gray-500 mb-4">Capacity: {bus.totalSeats} Seats • Mileage: {bus.mileage} km/l • Value: {bus.bus_value}</p>
                 </div>
 
                 {/* Price & Book */}
                 <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4 border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
                   <div className="text-left md:text-right">
-                    <p className="text-2xl font-bold text-gray-900">₹{bus.price}</p>
+                    <p className="text-2xl font-bold text-gray-900">₹{price}</p>
                     <p className="text-xs text-gray-500">+ GST</p>
                   </div>
                   <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">
@@ -156,7 +179,7 @@ export default async function SearchPage({
 
               </div>
             </div>
-          ))
+          )})
           )}
         </div>
       </div>
