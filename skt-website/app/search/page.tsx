@@ -14,15 +14,19 @@ async function getCoordinates(city: string) {
   }
 }
 
-async function getRealDistance(from: string, to: string): Promise<number> {
-  if (!from || !to) return 0;
-  const [start, end] = await Promise.all([getCoordinates(from), getCoordinates(to)]);
+async function getMultiStopDistance(points: string[]): Promise<number> {
+  if (points.length < 2) return 0;
   
-  if (!start || !end) return 0;
+  const coordsPromises = points.map(p => getCoordinates(p));
+  const coords = await Promise.all(coordsPromises);
+  const validCoords = coords.filter((c): c is {lat: string, lon: string} => c !== null);
+  
+  if (validCoords.length < 2) return 0;
 
   try {
+    const coordString = validCoords.map(c => `${c.lon},${c.lat}`).join(';');
     const res = await fetch(
-      `https://router.project-osrm.org/route/v1/driving/${start.lon},${start.lat};${end.lon},${end.lat}?overview=false`
+      `https://router.project-osrm.org/route/v1/driving/${coordString}?overview=false`
     );
     const data = await res.json();
     return data.routes?.[0]?.distance ? Math.round(data.routes[0].distance / 1000) : 0;
@@ -33,7 +37,8 @@ async function getRealDistance(from: string, to: string): Promise<number> {
 
 function calculateBusPrice(distance: number, mileage: number, busValue: number, days: number) {
   const DIESEL_PRICE = 98.98;
-  const basePrice = (distance / mileage) * DIESEL_PRICE * busValue;
+  const Per_KM_COST = 60;
+  const basePrice = (distance * 2) * Per_KM_COST;
   const extraCharge = days > 2 ? (days - 2) * 2500 : 0;
   return Math.round(basePrice + extraCharge);
 }
@@ -50,7 +55,11 @@ export default async function SearchPage({
   const returnDate = typeof params.returnDate === 'string' ? params.returnDate : '';
   const passengers = typeof params.passengers === 'string' ? params.passengers : '1';
   const passengerCount = parseInt(passengers) || 1;
-  const distance = await getRealDistance(origin, destination);
+  
+  const stopsParam = params.stops;
+  const stops = Array.isArray(stopsParam) ? stopsParam : (stopsParam ? [stopsParam] : []);
+  const routePoints = [origin, ...stops, destination].filter(Boolean);
+  const distance = await getMultiStopDistance(routePoints);
 
   let days = 1;
   if (departDate && returnDate) {
@@ -131,7 +140,7 @@ export default async function SearchPage({
             Available Buses
           </h1>
           <p className="mt-2 text-gray-600">
-            {origin && destination ? `${origin} to ${destination}` : 'Search Results'} 
+            {routePoints.length > 0 ? routePoints.join(' → ') : 'Search Results'} 
             {distance > 0 && origin && destination && ` • ${distance} km`}
             {departDate && ` • ${departDate}`} 
             {passengers && ` • ${passengers} Passenger(s)`}
@@ -172,9 +181,24 @@ export default async function SearchPage({
                     <p className="text-2xl font-bold text-gray-900">₹{price}</p>
                     <p className="text-xs text-gray-500">+ GST</p>
                   </div>
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors">
+                  <Link 
+                    href={{
+                      pathname: '/book',
+                      query: {
+                        busId: bus.id,
+                        origin,
+                        destination,
+                        stops,
+                        departDate,
+                        returnDate,
+                        passengers,
+                        price
+                      }
+                    }}
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors"
+                  >
                     Book Bus
-                  </button>
+                  </Link>
                 </div>
 
               </div>
