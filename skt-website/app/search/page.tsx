@@ -1,6 +1,36 @@
 import Link from "next/link";
 import ImageGallery from "./image-gallery";
 
+async function getCoordinates(city: string) {
+  try {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&limit=1`,
+      { headers: { "User-Agent": "SKT-Travels-Demo/1.0" } }
+    );
+    const data = await res.json();
+    return data[0] ? { lat: data[0].lat, lon: data[0].lon } : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+async function getRealDistance(from: string, to: string): Promise<number> {
+  if (!from || !to) return 0;
+  const [start, end] = await Promise.all([getCoordinates(from), getCoordinates(to)]);
+  
+  if (!start || !end) return 0;
+
+  try {
+    const res = await fetch(
+      `https://router.project-osrm.org/route/v1/driving/${start.lon},${start.lat};${end.lon},${end.lat}?overview=false`
+    );
+    const data = await res.json();
+    return data.routes?.[0]?.distance ? Math.round(data.routes[0].distance / 1000) : 0;
+  } catch (e) {
+    return 0;
+  }
+}
+
 export default async function SearchPage({
   searchParams,
 }: {
@@ -12,6 +42,7 @@ export default async function SearchPage({
   const departDate = typeof params.departDate === 'string' ? params.departDate : '';
   const passengers = typeof params.passengers === 'string' ? params.passengers : '1';
   const passengerCount = parseInt(passengers) || 1;
+  const distance = await getRealDistance(origin, destination);
 
   // Mock Data for demonstration
   const buses = [
@@ -80,6 +111,7 @@ export default async function SearchPage({
           </h1>
           <p className="mt-2 text-gray-600">
             {origin && destination ? `${origin} to ${destination}` : 'Search Results'} 
+            {distance > 0 && origin && destination && ` • ${distance} km`}
             {departDate && ` • ${departDate}`} 
             {passengers && ` • ${passengers} Passenger(s)`}
           </p>
