@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 
 // Comprehensive list of cities in India.
-const CITIES = [
+export const CITIES = [
   "Kolhapur, Maharashtra",
   "Port Blair, Andaman & Nicobar Islands",
   "Adilabad, Andhra Pradesh",
@@ -1513,13 +1513,19 @@ interface LocationInputProps {
   defaultValue?: string;
   placeholder?: string;
   required?: boolean;
+  actionRight?: React.ReactNode;
+  onChange?: (value: string) => void;
 }
 
-export default function LocationInput({ label, name, defaultValue = "", placeholder, required }: LocationInputProps) {
+export default function LocationInput({ label, name, defaultValue = "", placeholder, required, actionRight, onChange }: LocationInputProps) {
   const [query, setQuery] = useState(defaultValue);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setQuery(defaultValue);
+  }, [defaultValue]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -1534,6 +1540,7 @@ export default function LocationInput({ label, name, defaultValue = "", placehol
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
+    if (onChange) onChange(value);
     
     if (value.length > 0) {
       const filtered = CITIES.filter((city) =>
@@ -1550,13 +1557,17 @@ export default function LocationInput({ label, name, defaultValue = "", placehol
   const handleSelect = (city: string) => {
     setQuery(city);
     setIsOpen(false);
+    if (onChange) onChange(city);
   };
 
   return (
     <div className="relative" ref={wrapperRef}>
-      <label htmlFor={name} className="block text-sm font-medium text-gray-700">
-        {label}
-      </label>
+      <div className="flex justify-between items-end">
+        <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+          {label}
+        </label>
+        {actionRight}
+      </div>
       <input
         type="text"
         id={name}

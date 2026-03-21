@@ -1,12 +1,64 @@
 "use client";
 
-import { useState, useRef } from "react";
-import LocationInput from "./location-input";
+import { useState, useRef, useEffect } from "react";
+import LocationInput, { CITIES } from "./location-input";
+import AutoLocationButton from "./auto-location-button";
 
 export default function Home() {
   const [destinations, setDestinations] = useState<{ id: number }[]>([{ id: Date.now() }]);
+  const [origin, setOrigin] = useState("");
   const dragItem = useRef<number | null>(null);
   const dragOverItem = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const res = await fetch(
+              `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
+              { headers: { "User-Agent": "SKT-Travels-Demo/1.0" } }
+            );
+            const data = await res.json();
+            
+            const rawCity = 
+              data.address.city || 
+              data.address.town || 
+              data.address.village || 
+              data.address.county;
+              
+            const rawState = data.address.state;
+            let finalLocation = "";
+
+            if (rawCity) {
+              const rawCityLower = rawCity.toLowerCase();
+              const match = CITIES.find((c) => {
+                const cLower = c.toLowerCase();
+                const cCityOnly = cLower.split(",")[0].trim();
+                return cLower.includes(rawCityLower) || rawCityLower.includes(cCityOnly);
+              });
+              
+              finalLocation = match ? match : (rawState ? `${rawCity}, ${rawState}` : rawCity);
+            } else if (rawState) {
+              finalLocation = rawState;
+            }
+
+            setOrigin(finalLocation || "Agra, Uttar Pradesh");
+          } catch (error) {
+            console.error("Error fetching location:", error);
+            setOrigin("Agra, Uttar Pradesh");
+          }
+        },
+        (error) => {
+          console.error("Geolocation error:", error);
+          setOrigin("Agra, Uttar Pradesh");
+        }
+      );
+    } else {
+      setOrigin("Agra, Uttar Pradesh");
+    }
+  }, []);
 
   const addStop = () => {
     setDestinations((prev) => {
@@ -85,9 +137,11 @@ export default function Home() {
                   <LocationInput 
                     label="Start your journey" 
                     name="origin" 
-                    defaultValue="Agra, Uttar Pradesh" 
+                    defaultValue={origin} 
+                    onChange={setOrigin}
                     placeholder="e.g., New York" 
                     required
+                    actionRight={<AutoLocationButton onLocationFound={(city) => setOrigin(city)} />}
                   />
                 </div>
               </div>
