@@ -3,13 +3,17 @@ import ImageGallery from "./image-gallery";
 
 async function getCoordinates(city: string) {
   try {
+    const apiKey = 'ohv4XjTQoDIolIO6FYjhrrOjdE5ErPy3xUqrwYvG';
     const res = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&limit=1`,
-      { headers: { "User-Agent": "SKT-Travels-Demo/1.0" } }
+      `https://api.olamaps.io/places/v1/geocode?address=${encodeURIComponent(city)}&language=hi&api_key=${apiKey}`,
+      { headers: { "X-Request-Id": "req-" + Date.now() } }
     );
     const data = await res.json();
-    return data[0] ? { lat: data[0].lat, lon: data[0].lon } : null;
+    
+    const location = data.geocodingResults?.[0]?.geometry?.location;
+    return location ? { lat: location.lat.toString(), lon: location.lng.toString() } : null;
   } catch (e) {
+    console.error("Geocoding error:", e);
     return null;
   }
 }
@@ -24,13 +28,31 @@ async function getMultiStopDistance(points: string[]): Promise<number> {
   if (validCoords.length < 2) return 0;
 
   try {
-    const coordString = validCoords.map(c => `${c.lon},${c.lat}`).join(';');
-    const res = await fetch(
-      `https://router.project-osrm.org/route/v1/driving/${coordString}?overview=false`
-    );
+    const origins = encodeURIComponent(validCoords.slice(0, -1).map(c => `${c.lat},${c.lon}`).join('|'));
+    const destinations = encodeURIComponent(validCoords.slice(1).map(c => `${c.lat},${c.lon}`).join('|'));
+    const apiKey = 'ohv4XjTQoDIolIO6FYjhrrOjdE5ErPy3xUqrwYvG';
+
+    const url = `https://api.olamaps.io/routing/v1/distanceMatrix?origins=${origins}&destinations=${destinations}&api_key=${apiKey}`;
+
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'X-Request-Id': 'req-' + Date.now(),
+      }
+    });
     const data = await res.json();
-    return data.routes?.[0]?.distance ? Math.round(data.routes[0].distance / 1000) : 0;
+    
+    let totalDistance = 0;
+    for (let i = 0; i < validCoords.length - 1; i++) {
+      const element = data.rows?.[i]?.elements?.[i];
+      if (element?.status === 'OK' && typeof element.distance === 'number') {
+        totalDistance += element.distance;
+      }
+    }
+    // Explicitly increasing the distance by 3% to match the distance values from google maps.
+    return totalDistance > 0 ? Math.round((totalDistance * 1.03) / 1000) : 0;
   } catch (e) {
+    console.error("Error fetching distance matrix:", e);
     return 0;
   }
 }
