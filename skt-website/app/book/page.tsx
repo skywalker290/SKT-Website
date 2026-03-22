@@ -1,4 +1,5 @@
 import Link from "next/link";
+import GenerateBillButton from "./GenerateBillButton";
 
 // Mock Data (duplicated from search page for simplicity)
 const buses = [
@@ -168,6 +169,24 @@ export default async function BookingPage({
               <button className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
                 Proceed to Pay
               </button>
+              
+              <GenerateBillButton 
+                tripDetails={{
+                  origin,
+                  destination,
+                  stops,
+                  departDate,
+                  returnDate,
+                  operator: bus.operator,
+                  type: bus.type,
+                  passengers
+                }}
+                fareDetails={{
+                  basePrice,
+                  gst,
+                  totalPrice
+                }}
+              />
               
               <div className="mt-4 flex items-start gap-2">
                 <div className="flex-shrink-0">
