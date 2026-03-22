@@ -68,11 +68,41 @@ export default function GenerateBillButton({ tripDetails, fareDetails }: Generat
     addSectionTitle('Trip Details', yPos);
     yPos += 12;
     
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(12);
-    doc.text(`${tripDetails.origin}   ->   ${tripDetails.destination}`, 20, yPos);
+    const routePoints = [tripDetails.origin, ...(tripDetails.stops || []), tripDetails.destination];
+    
+    routePoints.forEach((point, index) => {
+      const isEndpoint = index === 0 || index === routePoints.length - 1;
+      
+      if (isEndpoint) {
+        doc.setFillColor(37, 99, 235); // Blue-600
+        doc.setTextColor(15, 23, 42); // Slate-900
+      } else {
+        doc.setFillColor(148, 163, 184); // Slate-400
+        doc.setTextColor(71, 85, 105); // Slate-600
+      }
+      
+      doc.circle(23, yPos, isEndpoint ? 2 : 1.5, 'F');
+      
+      doc.setFont('helvetica', isEndpoint ? 'bold' : 'normal');
+      doc.setFontSize(isEndpoint ? 11 : 10);
+      
+      const pointLines = doc.splitTextToSize(point, pageWidth - 45);
+      doc.text(pointLines, 30, yPos + 1);
+      
+      const textHeight = pointLines.length * 5;
+      
+      if (index < routePoints.length - 1) {
+        doc.setDrawColor(203, 213, 225); // Slate-300
+        doc.setLineWidth(0.5);
+        doc.line(23, yPos + 3, 23, yPos + textHeight + 2);
+      }
+      
+      yPos += textHeight + 4;
+    });
 
-    yPos += 8;
+    yPos += 4;
+    
+    doc.setTextColor(51, 65, 85); // Reset text color
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(10);
     doc.text(`Date: ${tripDetails.departDate} ${tripDetails.returnDate ? `(Return: ${tripDetails.returnDate})` : ''}`, 20, yPos);
@@ -81,10 +111,6 @@ export default function GenerateBillButton({ tripDetails, fareDetails }: Generat
     yPos += 7;
     doc.text(`Bus Type: ${tripDetails.type}`, 20, yPos);
     doc.text(`Passengers: ${tripDetails.passengers}`, 110, yPos);
-
-    yPos += 7;
-    const stopsText = tripDetails.stops.length > 0 ? tripDetails.stops.join(', ') : 'None';
-    doc.text(`Stops: ${stopsText}`, 20, yPos);
 
     yPos += 20;
 
