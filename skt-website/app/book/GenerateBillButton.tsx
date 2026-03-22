@@ -44,7 +44,7 @@ export default function GenerateBillButton({ tripDetails, fareDetails }: Generat
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(24);
-    doc.text('SKT EXPRESS', 20, 25);
+    doc.text('Sri Kela Travels', 20, 25);
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(12);
@@ -113,7 +113,7 @@ export default function GenerateBillButton({ tripDetails, fareDetails }: Generat
     // Fare Box
     doc.setFillColor(248, 250, 252); // Slate-50
     doc.setDrawColor(226, 232, 240); // Slate-200
-    doc.rect(20, yPos, pageWidth - 40, 40, 'FD'); // Fill and Border
+    doc.rect(20, yPos, pageWidth - 40, 50, 'FD'); // Fill and Border
 
     yPos += 12;
     doc.setFont('helvetica', 'normal');
@@ -133,6 +133,13 @@ export default function GenerateBillButton({ tripDetails, fareDetails }: Generat
     doc.setTextColor(15, 23, 42); // Slate-900
     doc.text(`Total Payable:`, 25, yPos); 
     doc.text(`INR ${fareDetails.totalPrice.toLocaleString('en-IN')}`, pageWidth - 25, yPos, { align: 'right' });
+
+    yPos += 8;
+    doc.setFontSize(10);
+    doc.setTextColor(15, 23, 42); // Slate-900
+    doc.text(`Payment Status:`, 25, yPos); 
+    doc.setTextColor(220, 38, 38); // Red-600
+    doc.text(`Incomplete`, pageWidth - 25, yPos, { align: 'right' });
 
     // --- FOOTER ---
     doc.setTextColor(100, 116, 139); // Slate-500
