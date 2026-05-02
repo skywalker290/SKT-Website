@@ -762,7 +762,7 @@ export const CITIES = [
   "Shajapur, Madhya Pradesh",
   "Shamgarh, Madhya Pradesh",
   "Sheopur, Madhya Pradesh",
-  "Shivpuri, Madhya Pradesh",  
+  "Shivpuri, Madhya Pradesh",
   "Shujalpur, Madhya Pradesh",
   "Sidhi, Madhya Pradesh",
   "Sihora, Madhya Pradesh",
@@ -1541,7 +1541,7 @@ export default function LocationInput({ label, name, defaultValue = "", placehol
     const value = e.target.value;
     setQuery(value);
     if (onChange) onChange(value);
-    
+
     if (value.length > 0) {
       const filtered = CITIES.filter((city) =>
         city.toLowerCase().includes(value.toLowerCase())
@@ -1562,8 +1562,8 @@ export default function LocationInput({ label, name, defaultValue = "", placehol
 
   return (
     <div className="relative" ref={wrapperRef}>
-      <div className="flex justify-between items-end">
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+      <div className="flex justify-between items-end mb-2">
+        <label htmlFor={name} className="block text-sm font-bold text-on-surface uppercase tracking-wider font-display">
           {label}
         </label>
         {actionRight}
@@ -1576,28 +1576,28 @@ export default function LocationInput({ label, name, defaultValue = "", placehol
         onChange={handleInputChange}
         required={required}
         onFocus={() => {
-            if(query) {
-                 const filtered = CITIES.filter((city) =>
-                    city.toLowerCase().includes(query.toLowerCase())
-                  );
-                  setSuggestions(filtered);
-                  setIsOpen(true);
-            }
+          if (query) {
+            const filtered = CITIES.filter((city) =>
+              city.toLowerCase().includes(query.toLowerCase())
+            );
+            setSuggestions(filtered);
+            setIsOpen(true);
+          }
         }}
         placeholder={placeholder}
         autoComplete="off"
-        className="mt-2 block w-full rounded-md border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+        className="block w-full rounded-xl bg-white border border-outline-ghost py-4 px-4 text-on-surface shadow-sm focus:ring-2 focus:ring-primary outline-none transition-all font-sans placeholder:text-on-surface-variant/50"
       />
-      
+
       {isOpen && suggestions.length > 0 && (
-        <ul className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+        <ul className="absolute z-50 mt-2 max-h-60 w-full overflow-auto rounded-xl bg-surface-container-lowest py-2 text-base shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border border-outline-ghost scrollbar-hide">
           {suggestions.map((city, index) => (
             <li
               key={index}
-              className="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-blue-50 cursor-pointer"
+              className="relative cursor-default select-none py-3 px-4 text-on-surface hover:bg-surface-container transition-colors cursor-pointer font-sans"
               onClick={() => handleSelect(city)}
             >
-              <span className="block truncate">{city}</span>
+              <span className="block truncate font-medium">{city}</span>
             </li>
           ))}
         </ul>
