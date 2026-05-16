@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import FeaturedTours from "../components/FeaturedTours";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
 
       <Header />
       <Hero />
+      <FeaturedTours />
       <section className="py-24 px-6 max-w-7xl mx-auto jali-pattern">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
