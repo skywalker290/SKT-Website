@@ -61,7 +61,7 @@ export default function Home() {
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-primary text-sm">call</span>
-                +91 98765 43210
+                +91 9412548777
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-symbols-outlined text-primary text-sm">mail</span>
