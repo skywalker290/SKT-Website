@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
 :root {
   /* Voyage Elite Design Tokens */
@@ -70,5 +71,14 @@
   /* The "No-Line" Rule: Define boundaries through background shifts */
   .no-line-card {
     @apply border-0 shadow-none bg-surface-container-lowest;
+  }
+  
+  @keyframes heroFadeUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-hero-widget {
+    animation: heroFadeUp 0.8s ease-out 0.5s forwards;
+    opacity: 0;
   }
 }

@@ -75,7 +75,7 @@ export default function AutoLocationButton({ onLocationFound }: AutoLocationButt
       type="button"
       onClick={handleAutoDetect}
       disabled={isLocating}
-      className="text-xs text-blue-600 hover:text-blue-800 disabled:text-gray-400 font-medium transition-colors flex items-center gap-1 mb-1"
+      className="text-xs text-primary hover:text-primary-fixed disabled:text-white/40 font-medium transition-colors flex items-center gap-1 mb-1"
       title="Detect my current location"
     >
       {isLocating ? (

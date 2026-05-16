@@ -1563,7 +1563,7 @@ export default function LocationInput({ label, name, defaultValue = "", placehol
   return (
     <div className="relative" ref={wrapperRef}>
       <div className="flex justify-between items-end mb-2">
-        <label htmlFor={name} className="block text-sm font-bold text-on-surface uppercase tracking-wider font-display">
+        <label htmlFor={name} className="block text-sm font-bold text-white/90 uppercase tracking-wider font-display">
           {label}
         </label>
         {actionRight}

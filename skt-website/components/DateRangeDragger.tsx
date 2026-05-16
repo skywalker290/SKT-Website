@@ -78,7 +78,7 @@ export default function DateRangeDragger() {
 
   return (
     <div className="relative" ref={containerRef}>
-      <label className="block text-sm font-bold text-on-surface mb-2 uppercase tracking-wider">
+      <label className="block text-sm font-bold text-white/90 mb-2 uppercase tracking-wider">
         Journey Dates (Range Picker)
       </label>
       <div 

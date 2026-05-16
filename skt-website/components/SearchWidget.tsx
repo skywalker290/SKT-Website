@@ -93,7 +93,7 @@ export default function SearchWidget() {
 
   return (
     <div className="mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-30">
-      <div className="glass-card rounded-[2.5rem] p-6 sm:p-10 shadow-2xl border border-white/20">
+      <div className="glass-overlay rounded-[2.5rem] p-6 sm:p-10 shadow-2xl">
         <form action="/search" className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           
           {/* Left Column: Route [THE BRAIN] */}
@@ -130,7 +130,7 @@ export default function SearchWidget() {
                     type="text" 
                     name="stops"
                     placeholder="Enter city"
-                    className="bg-transparent border-none outline-none text-sm font-bold text-on-surface w-24 placeholder:text-outline/50"
+                    className="bg-transparent border-none outline-none text-sm font-bold text-white w-24 placeholder:text-white/50"
                   />
                   <button 
                     type="button"
@@ -145,7 +145,7 @@ export default function SearchWidget() {
               <button
                 type="button"
                 onClick={addStop}
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-outline-variant hover:border-primary hover:text-primary transition-all group"
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-outline-variant text-white/80 hover:border-primary hover:text-primary transition-all group"
               >
                 <span className="material-symbols-outlined text-sm group-hover:rotate-90 transition-transform">add</span>
                 <span className="text-[0.65rem] font-bold uppercase tracking-widest">Add stop</span>
@@ -175,7 +175,7 @@ export default function SearchWidget() {
 
             {/* Passengers */}
             <div>
-              <label htmlFor="passengers" className="block text-sm font-bold text-on-surface mb-2 uppercase tracking-wider">Travelers</label>
+              <label htmlFor="passengers" className="block text-sm font-bold text-white/90 mb-2 uppercase tracking-wider">Travelers</label>
               <div className="relative">
                 <input 
                   type="number" 
