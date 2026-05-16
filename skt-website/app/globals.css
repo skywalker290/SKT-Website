@@ -78,7 +78,18 @@
     100% { opacity: 1; transform: translateY(0); }
   }
   .animate-hero-widget {
-    animation: heroFadeUp 0.8s ease-out 0.5s forwards;
-    opacity: 0;
+    animation: heroFadeUp 0.8s ease-out 0.5s both;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .animate-hero-text-h1 {
+    animation: heroFadeUp 0.8s ease-out 0.1s both;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .animate-hero-text-p {
+    animation: heroFadeUp 0.8s ease-out 0.3s both;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
