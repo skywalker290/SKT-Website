@@ -1,4 +1,5 @@
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+import ScrollReveal from "../components/ScrollReveal";
 import Hero from "../components/Hero";
 import FeaturedTours from "../components/FeaturedTours";
 
@@ -6,63 +7,86 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
 
-      <Header />
+      <Navbar />
       <Hero />
       <FeaturedTours />
+
+      {/* Example Section utilizing our new Phase 4 scroll utilities */}
+      <section className="py-24 px-6 max-w-5xl mx-auto text-center border-t border-gray-100">
+        <ScrollReveal direction="up" duration={0.8}>
+          <h3 className="text-3xl font-extrabold text-brand-charcoal mb-4">
+            Why Discerning Travelers Choose Us
+          </h3>
+        </ScrollReveal>
+        
+        <ScrollReveal direction="up" delay={0.2} duration={0.8}>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            From seamless custom itineraries to an immaculate premium fleet, we manage every single logistical layer so your only requirement is immersion.
+          </p>
+        </ScrollReveal>
+      </section>
       <section className="py-24 px-6 max-w-7xl mx-auto jali-pattern">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="max-w-2xl">
-            <span className="text-primary font-bold tracking-widest uppercase text-sm">Curated Excellence</span>
-            <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface mt-2 tracking-tight">Our Premium Services</h2>
+        <ScrollReveal direction="up" duration={0.8}>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-2xl">
+              <span className="text-primary font-bold tracking-widest uppercase text-sm">Curated Excellence</span>
+              <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface mt-2 tracking-tight">Our Premium Services</h2>
+            </div>
+            <div className="hidden md:block h-1 w-24 bg-primary/20 rounded-full mb-4"></div>
           </div>
-          <div className="hidden md:block h-1 w-24 bg-primary/20 rounded-full mb-4"></div>
-        </div>
+        </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
-            <div className="h-64 overflow-hidden">
-              <img alt="Premium Packages" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF4FUYy3o-K79Djm52Er91uuMjSdi9viF3VXgF7SAOs04F62dfekGT9I0Clebq91nGrAxM1CLWoRkNqOSUEiRBAfSaE5xuE6Tn1HbVM-1EAz74YLHN_6O0JOqd7-KwhjPd2GFizi8yUAlIbu3-gXXdsicgzAhahPj6KJkSDAPfLKiC53S2G2FNrpYrWr86ewqT3bvvZ1ELdZau3doFBppx72bxi_4Xvi4d-Y65BWMJBUOOQJsRsgEpI6qSxrahf0FyTpLQ3_Uqg50"/>
-            </div>
-            <div className="p-10 flex flex-col flex-grow">
-              <div className="bg-primary-container text-white w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined" data-weight="fill">card_travel</span>
+          <ScrollReveal direction="up" delay={0.1} duration={0.6}>
+            <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
+              <div className="h-64 overflow-hidden">
+                <img alt="Premium Packages" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF4FUYy3o-K79Djm52Er91uuMjSdi9viF3VXgF7SAOs04F62dfekGT9I0Clebq91nGrAxM1CLWoRkNqOSUEiRBAfSaE5xuE6Tn1HbVM-1EAz74YLHN_6O0JOqd7-KwhjPd2GFizi8yUAlIbu3-gXXdsicgzAhahPj6KJkSDAPfLKiC53S2G2FNrpYrWr86ewqT3bvvZ1ELdZau3doFBppx72bxi_4Xvi4d-Y65BWMJBUOOQJsRsgEpI6qSxrahf0FyTpLQ3_Uqg50"/>
               </div>
-              <h3 className="font-headline text-2xl font-bold mb-4">Premium Tour Packages</h3>
-              <p className="text-on-surface-variant leading-relaxed mb-8">Handcrafted itineraries that blend iconic landmarks with hidden cultural treasures for an unforgettable journey.</p>
-              <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
-                View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
-              </button>
-            </div>
-          </div>
-          <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
-            <div className="h-64 overflow-hidden">
-              <img alt="Luxury Rentals" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAABDhcn4e4MMWvCVzQlNCy6TaUW22bSlbq2qAXO28h9xbmnZgWo8WBznz07Npqg9cQx9FcciYe7fvjY67pORabxbX5J3IqNgI0rFMSk7WHX4kmyL8jvBzASXpHvJVauOjmx38SQKndyYY3Jwk5P4DJikjImS2eKCbCPJXrBVlQTM7wG4nCaHNSjHC_LPDsISFZpp1N-xh-hSHWQz6RwLnhhEqSGUMppFg0yaQaUkAeem87kbC07od1d4OacENKShI3xdPbvssJkKE"/>
-            </div>
-            <div className="p-10 flex flex-col flex-grow">
-              <div className="bg-secondary-container text-on-surface w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined" data-weight="fill">airport_shuttle</span>
+              <div className="p-10 flex flex-col flex-grow">
+                <div className="bg-primary-container text-white w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                  <span className="material-symbols-outlined" data-weight="fill">card_travel</span>
+                </div>
+                <h3 className="font-headline text-2xl font-bold mb-4">Premium Tour Packages</h3>
+                <p className="text-on-surface-variant leading-relaxed mb-8">Handcrafted itineraries that blend iconic landmarks with hidden cultural treasures for an unforgettable journey.</p>
+                <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
+                  View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
+                </button>
               </div>
-              <h3 className="font-headline text-2xl font-bold mb-4">Luxury Tempo Traveller</h3>
-              <p className="text-on-surface-variant leading-relaxed mb-8">Premium group travel with captain seats, air conditioning, and professional chauffeurs for ultimate comfort.</p>
-              <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
-                View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
-              </button>
             </div>
-          </div>
-          <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
-            <div className="h-64 overflow-hidden">
-              <img alt="Expert Sightseeing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUCx87eZnghr3hYXBpTjmDs75eJ5y7qnJxq5T4Y0BZqoDVoqq63-vRNcCVG1l1SCa1fCv17dT2aLTZIKx71A1nLIuk8Jd0UtVJrEH9o6Zp9jiQLIb7tG7EtprqzpjK7GeT4lKuxpMacJe8aDm5BpjBNkCLwiAHhkI7kEPt5n62M8ex1CwEkcgVlXAi7T4LleQ5DRzRTJzY-WexB9f1eYKPN4yP1L_d4FGMjLX6uB-GqOq1YiiWryGtIRFaVedJfUWB4YJVgWdlX7E"/>
-            </div>
-            <div className="p-10 flex flex-col flex-grow">
-              <div className="bg-primary-container text-white w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                <span className="material-symbols-outlined" data-weight="fill">theater_comedy</span>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.2} duration={0.6}>
+            <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
+              <div className="h-64 overflow-hidden">
+                <img alt="Luxury Rentals" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAABDhcn4e4MMWvCVzQlNCy6TaUW22bSlbq2qAXO28h9xbmnZgWo8WBznz07Npqg9cQx9FcciYe7fvjY67pORabxbX5J3IqNgI0rFMSk7WHX4kmyL8jvBzASXpHvJVauOjmx38SQKndyYY3Jwk5P4DJikjImS2eKCbCPJXrBVlQTM7wG4nCaHNSjHC_LPDsISFZpp1N-xh-hSHWQz6RwLnhhEqSGUMppFg0yaQaUkAeem87kbC07od1d4OacENKShI3xdPbvssJkKE"/>
               </div>
-              <h3 className="font-headline text-2xl font-bold mb-4">Expert Local Sightseeing</h3>
-              <p className="text-on-surface-variant leading-relaxed mb-8">Discover Agra's soul with multi-lingual historians who bring the stories of the Mughals to vivid life.</p>
-              <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
-                View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
-              </button>
+              <div className="p-10 flex flex-col flex-grow">
+                <div className="bg-secondary-container text-on-surface w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                  <span className="material-symbols-outlined" data-weight="fill">airport_shuttle</span>
+                </div>
+                <h3 className="font-headline text-2xl font-bold mb-4">Luxury Tempo Traveller</h3>
+                <p className="text-on-surface-variant leading-relaxed mb-8">Premium group travel with captain seats, air conditioning, and professional chauffeurs for ultimate comfort.</p>
+                <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
+                  View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
+                </button>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={0.3} duration={0.6}>
+            <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
+              <div className="h-64 overflow-hidden">
+                <img alt="Expert Sightseeing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUCx87eZnghr3hYXBpTjmDs75eJ5y7qnJxq5T4Y0BZqoDVoqq63-vRNcCVG1l1SCa1fCv17dT2aLTZIKx71A1nLIuk8Jd0UtVJrEH9o6Zp9jiQLIb7tG7EtprqzpjK7GeT4lKuxpMacJe8aDm5BpjBNkCLwiAHhkI7kEPt5n62M8ex1CwEkcgVlXAi7T4LleQ5DRzRTJzY-WexB9f1eYKPN4yP1L_d4FGMjLX6uB-GqOq1YiiWryGtIRFaVedJfUWB4YJVgWdlX7E"/>
+              </div>
+              <div className="p-10 flex flex-col flex-grow">
+                <div className="bg-primary-container text-white w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                  <span className="material-symbols-outlined" data-weight="fill">theater_comedy</span>
+                </div>
+                <h3 className="font-headline text-2xl font-bold mb-4">Expert Local Sightseeing</h3>
+                <p className="text-on-surface-variant leading-relaxed mb-8">Discover Agra's soul with multi-lingual historians who bring the stories of the Mughals to vivid life.</p>
+                <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
+                  View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -112,94 +136,104 @@ export default function Home() {
       </section>
 
       <section className="py-24 px-6 max-w-7xl mx-auto">
-        <div className="bg-primary rounded-[3rem] p-12 md:p-20 relative overflow-hidden text-white">
-          <div className="absolute inset-0 opacity-10 jali-pattern pointer-events-none"></div>
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-primary-fixed font-bold tracking-widest uppercase text-sm mb-4 block">Our Promise</span>
-              <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Why Book With Us?</h2>
-              <p className="text-primary-fixed/80 text-lg leading-relaxed mb-8">Since 1998, Sri Kela Travels has been the golden standard for tourism in Agra, combining ancestral hospitality with modern professionalism.</p>
-              <button className="bg-white text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-fixed transition-colors">Start Your Journey</button>
-            </div>
-            <div className="grid grid-cols-1 gap-8">
-              <div className="flex gap-6 items-start">
-                <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
-                  <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>support_agent</span>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold mb-2">24/7 Local Support</h4>
-                  <p className="text-white/70">Our dedicated concierge team is always available to ensure your trip runs without a hitch.</p>
-                </div>
+        <ScrollReveal direction="up" duration={0.8}>
+          <div className="bg-primary rounded-[3rem] p-12 md:p-20 relative overflow-hidden text-white">
+            <div className="absolute inset-0 opacity-10 jali-pattern pointer-events-none"></div>
+            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+              <div>
+                <span className="text-primary-fixed font-bold tracking-widest uppercase text-sm mb-4 block">Our Promise</span>
+                <h2 className="font-headline text-4xl md:text-5xl font-extrabold tracking-tight mb-6">Why Book With Us?</h2>
+                <p className="text-primary-fixed/80 text-lg leading-relaxed mb-8">Since 1998, Sri Kela Travels has been the golden standard for tourism in Agra, combining ancestral hospitality with modern professionalism.</p>
+                <button className="bg-white text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-fixed transition-colors">Start Your Journey</button>
               </div>
-              <div className="flex gap-6 items-start">
-                <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
-                  <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>interpreter_mode</span>
+              <div className="grid grid-cols-1 gap-8">
+                <div className="flex gap-6 items-start">
+                  <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                    <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>support_agent</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">24/7 Local Support</h4>
+                    <p className="text-white/70">Our dedicated concierge team is always available to ensure your trip runs without a hitch.</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Expert Multi-lingual Guides</h4>
-                  <p className="text-white/70">Our guides are licensed historians fluent in English, French, Spanish, and German.</p>
+                <div className="flex gap-6 items-start">
+                  <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                    <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>interpreter_mode</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">Expert Multi-lingual Guides</h4>
+                    <p className="text-white/70">Our guides are licensed historians fluent in English, French, Spanish, and German.</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-6 items-start">
-                <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
-                  <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold mb-2">Safe &amp; Seamless Travel</h4>
-                  <p className="text-white/70">Every vehicle in our fleet undergoes rigorous safety checks and is tracked via GPS for your security.</p>
+                <div className="flex gap-6 items-start">
+                  <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                    <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold mb-2">Safe &amp; Seamless Travel</h4>
+                    <p className="text-white/70">Every vehicle in our fleet undergoes rigorous safety checks and is tracked via GPS for your security.</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       <section className="py-24 bg-surface-bright">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4">What Our Travelers Say</h2>
-            <div className="flex justify-center gap-1 text-secondary-container">
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+          <ScrollReveal direction="up" duration={0.8}>
+            <div className="text-center mb-16">
+              <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4">What Our Travelers Say</h2>
+              <div className="flex justify-center gap-1 text-secondary-container">
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
-              <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
-              <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"The Taj Mahal sunrise tour with Sri Kela was magical. Our guide Raj was incredibly knowledgeable. The luxury van was spotless and very comfortable for our family."</p>
-              <div className="flex items-center gap-4">
-                <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK3dSMu6vyeL4dhsZ2rKRLlrh9jUWU3gkm5e7_Yh9XKuBKjXgwTKthYbs4jb7JKB_ONUlyggfFB5vHijsVY45H1C2dG1JUDp5admMSzrHrtRmEhiG-kdUStL0zi5DZLDNRy-sDU_bic6llScdkdF257CGwpOWJrtJ8Y1p1rcefh7S1BAAXV0C7AYS2sa5DTYZXzrOygWpYIgUexEfdUXbIPGOBXN_h_pwt1_nboqxU4e57hOBJ0Y6gRs1v4zzesST1XSEL4V-PHh4"/>
-                <div>
-                  <h5 className="font-bold">David Richardson</h5>
-                  <p className="text-sm text-on-surface-variant">London, UK</p>
+            <ScrollReveal direction="up" delay={0.1} duration={0.6}>
+              <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
+                <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
+                <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"The Taj Mahal sunrise tour with Sri Kela was magical. Our guide Raj was incredibly knowledgeable. The luxury van was spotless and very comfortable for our family."</p>
+                <div className="flex items-center gap-4">
+                  <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK3dSMu6vyeL4dhsZ2rKRLlrh9jUWU3gkm5e7_Yh9XKuBKjXgwTKthYbs4jb7JKB_ONUlyggfFB5vHijsVY45H1C2dG1JUDp5admMSzrHrtRmEhiG-kdUStL0zi5DZLDNRy-sDU_bic6llScdkdF257CGwpOWJrtJ8Y1p1rcefh7S1BAAXV0C7AYS2sa5DTYZXzrOygWpYIgUexEfdUXbIPGOBXN_h_pwt1_nboqxU4e57hOBJ0Y6gRs1v4zzesST1XSEL4V-PHh4"/>
+                  <div>
+                    <h5 className="font-bold">David Richardson</h5>
+                    <p className="text-sm text-on-surface-variant">London, UK</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
-              <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
-              <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"Sri Kela Travels made our Rajasthan circuit a dream. No stress, just pure luxury and culture. Their 24/7 support was actually helpful when we wanted to change a dinner reservation."</p>
-              <div className="flex items-center gap-4">
-                <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhhTfyytlhsHccxF_6p7BNXOQrl_i3K8B1by7GkrN_YDyhmUP7ejgWbDepiLxArBXAgsBW-KFfcGbwQTdsmUnac5ZOndhcaPcbffd7CFu3o7A_XmcL0HMdBkWYYjEXySz0EXTBnyHuQDoR2leUyKih2pTFsUb-QnnMWWULeVLa8b8SIOkJTmoktU0RqKS1RO2N3PSxxsqVxeCiRbhgUmyhJI87dn7TUH2iGhh1d48tvMprN9zxukBlzZYW1aDE-AlqKdDTDdu3Jec"/>
-                <div>
-                  <h5 className="font-bold">Elena Martinez</h5>
-                  <p className="text-sm text-on-surface-variant">Madrid, Spain</p>
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={0.2} duration={0.6}>
+              <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
+                <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
+                <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"Sri Kela Travels made our Rajasthan circuit a dream. No stress, just pure luxury and culture. Their 24/7 support was actually helpful when we wanted to change a dinner reservation."</p>
+                <div className="flex items-center gap-4">
+                  <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhhTfyytlhsHccxF_6p7BNXOQrl_i3K8B1by7GkrN_YDyhmUP7ejgWbDepiLxArBXAgsBW-KFfcGbwQTdsmUnac5ZOndhcaPcbffd7CFu3o7A_XmcL0HMdBkWYYjEXySz0EXTBnyHuQDoR2leUyKih2pTFsUb-QnnMWWULeVLa8b8SIOkJTmoktU0RqKS1RO2N3PSxxsqVxeCiRbhgUmyhJI87dn7TUH2iGhh1d48tvMprN9zxukBlzZYW1aDE-AlqKdDTDdu3Jec"/>
+                  <div>
+                    <h5 className="font-bold">Elena Martinez</h5>
+                    <p className="text-sm text-on-surface-variant">Madrid, Spain</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
-              <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
-              <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"As a solo traveler, safety was my priority. Sri Kela Travels provided a fantastic female-led tour of Agra's bazaars. Highly recommended for authentic experiences!"</p>
-              <div className="flex items-center gap-4">
-                <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs617pOkLkGNWJTcr-0mcacPf7YVaucOht6A_JH-vHRzJ0UUg0vRgUi9P45Z1sQKzFpHr5McMWRrrTy3rH4XUZf2nRZGUIEIAzZSrXLGMMDI8uqCMQ6yhcZ5lM7R7UtYAZe8jblSkskXqlNBghtwCiWd7X5yII_z_aqmTIpS4bmbPPeUuB_R7XK3S92aSiaTVEFzM7j1QZPn5EeaCcIWwk7H2fBc__t0jSbfX3HmXy70sBxYVMQBPgSkEDdNrm3VJOmngtJLhn1nQ"/>
-                <div>
-                  <h5 className="font-bold">Sarah Jenkins</h5>
-                  <p className="text-sm text-on-surface-variant">Sydney, Australia</p>
+            </ScrollReveal>
+            <ScrollReveal direction="up" delay={0.3} duration={0.6}>
+              <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
+                <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
+                <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"As a solo traveler, safety was my priority. Sri Kela Travels provided a fantastic female-led tour of Agra's bazaars. Highly recommended for authentic experiences!"</p>
+                <div className="flex items-center gap-4">
+                  <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs617pOkLkGNWJTcr-0mcacPf7YVaucOht6A_JH-vHRzJ0UUg0vRgUi9P45Z1sQKzFpHr5McMWRrrTy3rH4XUZf2nRZGUIEIAzZSrXLGMMDI8uqCMQ6yhcZ5lM7R7UtYAZe8jblSkskXqlNBghtwCiWd7X5yII_z_aqmTIpS4bmbPPeUuB_R7XK3S92aSiaTVEFzM7j1QZPn5EeaCcIWwk7H2fBc__t0jSbfX3HmXy70sBxYVMQBPgSkEDdNrm3VJOmngtJLhn1nQ"/>
+                  <div>
+                    <h5 className="font-bold">Sarah Jenkins</h5>
+                    <p className="text-sm text-on-surface-variant">Sydney, Australia</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
