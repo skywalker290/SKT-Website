@@ -73,7 +73,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                     name="phone"
                     required 
                     className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all text-brand-charcoal" 
-                    placeholder="+91 98765 43210" 
+                    placeholder="+91 9412548777" 
                   />
                 </div>
                 <div>
