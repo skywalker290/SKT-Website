@@ -118,40 +118,29 @@ export default function SearchWidget() {
               </div>
             </div>
 
-            {/* Stops as Chips - Horizontal Path */}
-            <div className="flex flex-wrap gap-3 items-center ml-10">
-              {destinations.slice(0, -1).map((stop, index) => (
-                <div 
-                  key={stop.id}
-                  className="bg-primary/5 border border-primary/20 rounded-full px-4 py-2 flex items-center gap-2 group hover:bg-primary/10 transition-all animate-in fade-in slide-in-from-left-2"
-                >
-                  <span className="text-[0.65rem] font-bold text-primary uppercase">Stop {index + 1}</span>
-                  <input 
-                    type="text" 
-                    name="stops"
-                    placeholder="Enter city"
-                    className="bg-transparent border-none outline-none text-sm font-bold text-white w-24 placeholder:text-white/50"
+            {/* Stops as Standard Inputs */}
+            {destinations.slice(0, -1).map((stop, index) => (
+              <div key={stop.id} className="flex gap-6 items-start animate-in fade-in slide-in-from-top-2">
+                <div className="mt-10 w-4 h-4 rounded-full border-2 border-primary/50 bg-white shrink-0 z-10" />
+                <div className="flex-1">
+                  <LocationInput 
+                    label={`Stop ${index + 1}`} 
+                    name="stops" 
+                    placeholder="Enter city" 
+                    actionRight={
+                      <button 
+                        type="button"
+                        onClick={() => removeDestination(stop.id)}
+                        className="text-on-surface-variant hover:text-red-500 transition-colors flex items-center justify-center"
+                      >
+                        <span className="material-symbols-outlined text-[1.2rem]">close</span>
+                      </button>
+                    }
                   />
-                  <button 
-                    type="button"
-                    onClick={() => removeDestination(stop.id)}
-                    className="text-primary/40 hover:text-red-500 transition-colors"
-                  >
-                    <span className="material-symbols-outlined text-sm">close</span>
-                  </button>
                 </div>
-              ))}
-              
-              <button
-                type="button"
-                onClick={addStop}
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-outline-variant text-white/80 hover:border-primary hover:text-primary transition-all group"
-              >
-                <span className="material-symbols-outlined text-sm group-hover:rotate-90 transition-transform">add</span>
-                <span className="text-[0.65rem] font-bold uppercase tracking-widest">Add stop</span>
-              </button>
-            </div>
-
+              </div>
+            ))}
+            
             {/* Final Destination */}
             <div className="flex gap-6 items-start">
               <div className="mt-10 w-4 h-4 rounded-full border-2 border-secondary bg-white shrink-0 z-10">
@@ -165,6 +154,18 @@ export default function SearchWidget() {
                   required
                 />
               </div>
+            </div>
+
+            {/* Add Stop Button */}
+            <div className="ml-10 pt-2">
+              <button
+                type="button"
+                onClick={addStop}
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-dashed border-outline-variant text-white/80 hover:border-primary hover:text-primary transition-all group w-max"
+              >
+                <span className="material-symbols-outlined text-sm group-hover:rotate-90 transition-transform">add</span>
+                <span className="text-[0.65rem] font-bold uppercase tracking-widest">Add stop</span>
+              </button>
             </div>
 
           </div>
