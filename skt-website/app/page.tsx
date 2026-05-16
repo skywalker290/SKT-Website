@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import ScrollReveal from "../components/ScrollReveal";
 import Hero from "../components/Hero";
 import FeaturedTours from "../components/FeaturedTours";
+import PremiumServices from "../components/PremiumServices";
 import FleetMarquee from "../components/FleetMarquee";
 import TestimonialMarquee from "../components/TestimonialMarquee";
 export default function Home() {
@@ -12,88 +13,15 @@ export default function Home() {
       <Hero />
       <FeaturedTours />
 
+
+
       {/* Separated Sections for better breathing room */}
       <FleetMarquee />
       <TestimonialMarquee />
 
-      {/* Example Section utilizing our new Phase 4 scroll utilities */}
-      <section className="py-24 px-6 max-w-5xl mx-auto text-center border-t border-gray-100">
-        <ScrollReveal direction="up" duration={0.8}>
-          <h3 className="text-3xl font-extrabold text-brand-charcoal mb-4">
-            Why Discerning Travelers Choose Us
-          </h3>
-        </ScrollReveal>
-        
-        <ScrollReveal direction="up" delay={0.2} duration={0.8}>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            From seamless custom itineraries to an immaculate premium fleet, we manage every single logistical layer so your only requirement is immersion.
-          </p>
-        </ScrollReveal>
-      </section>
-      <section className="py-24 px-6 max-w-7xl mx-auto jali-pattern">
-        <ScrollReveal direction="up" duration={0.8}>
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-2xl">
-              <span className="text-primary font-bold tracking-widest uppercase text-sm">Curated Excellence</span>
-              <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface mt-2 tracking-tight">Our Premium Services</h2>
-            </div>
-            <div className="hidden md:block h-1 w-24 bg-primary/20 rounded-full mb-4"></div>
-          </div>
-        </ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ScrollReveal direction="up" delay={0.1} duration={0.6}>
-            <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
-              <div className="h-64 overflow-hidden">
-                <img alt="Premium Packages" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF4FUYy3o-K79Djm52Er91uuMjSdi9viF3VXgF7SAOs04F62dfekGT9I0Clebq91nGrAxM1CLWoRkNqOSUEiRBAfSaE5xuE6Tn1HbVM-1EAz74YLHN_6O0JOqd7-KwhjPd2GFizi8yUAlIbu3-gXXdsicgzAhahPj6KJkSDAPfLKiC53S2G2FNrpYrWr86ewqT3bvvZ1ELdZau3doFBppx72bxi_4Xvi4d-Y65BWMJBUOOQJsRsgEpI6qSxrahf0FyTpLQ3_Uqg50"/>
-              </div>
-              <div className="p-10 flex flex-col flex-grow">
-                <div className="bg-primary-container text-white w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined" data-weight="fill">card_travel</span>
-                </div>
-                <h3 className="font-headline text-2xl font-bold mb-4">Premium Tour Packages</h3>
-                <p className="text-on-surface-variant leading-relaxed mb-8">Handcrafted itineraries that blend iconic landmarks with hidden cultural treasures for an unforgettable journey.</p>
-                <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
-                  View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
-                </button>
-              </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.2} duration={0.6}>
-            <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
-              <div className="h-64 overflow-hidden">
-                <img alt="Luxury Rentals" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAABDhcn4e4MMWvCVzQlNCy6TaUW22bSlbq2qAXO28h9xbmnZgWo8WBznz07Npqg9cQx9FcciYe7fvjY67pORabxbX5J3IqNgI0rFMSk7WHX4kmyL8jvBzASXpHvJVauOjmx38SQKndyYY3Jwk5P4DJikjImS2eKCbCPJXrBVlQTM7wG4nCaHNSjHC_LPDsISFZpp1N-xh-hSHWQz6RwLnhhEqSGUMppFg0yaQaUkAeem87kbC07od1d4OacENKShI3xdPbvssJkKE"/>
-              </div>
-              <div className="p-10 flex flex-col flex-grow">
-                <div className="bg-secondary-container text-on-surface w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined" data-weight="fill">airport_shuttle</span>
-                </div>
-                <h3 className="font-headline text-2xl font-bold mb-4">Luxury Tempo Traveller</h3>
-                <p className="text-on-surface-variant leading-relaxed mb-8">Premium group travel with captain seats, air conditioning, and professional chauffeurs for ultimate comfort.</p>
-                <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
-                  View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
-                </button>
-              </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="up" delay={0.3} duration={0.6}>
-            <div className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full border border-outline-variant/10">
-              <div className="h-64 overflow-hidden">
-                <img alt="Expert Sightseeing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUCx87eZnghr3hYXBpTjmDs75eJ5y7qnJxq5T4Y0BZqoDVoqq63-vRNcCVG1l1SCa1fCv17dT2aLTZIKx71A1nLIuk8Jd0UtVJrEH9o6Zp9jiQLIb7tG7EtprqzpjK7GeT4lKuxpMacJe8aDm5BpjBNkCLwiAHhkI7kEPt5n62M8ex1CwEkcgVlXAi7T4LleQ5DRzRTJzY-WexB9f1eYKPN4yP1L_d4FGMjLX6uB-GqOq1YiiWryGtIRFaVedJfUWB4YJVgWdlX7E"/>
-              </div>
-              <div className="p-10 flex flex-col flex-grow">
-                <div className="bg-primary-container text-white w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined" data-weight="fill">theater_comedy</span>
-                </div>
-                <h3 className="font-headline text-2xl font-bold mb-4">Expert Local Sightseeing</h3>
-                <p className="text-on-surface-variant leading-relaxed mb-8">Discover Agra's soul with multi-lingual historians who bring the stories of the Mughals to vivid life.</p>
-                <button className="mt-auto flex items-center text-primary font-bold hover:gap-3 transition-all">
-                  View Details <span className="material-symbols-outlined ml-2">arrow_forward</span>
-                </button>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* The Dark Mode Breaker - Cinematic Premium Services */}
+      <PremiumServices />
+
 
       <section className="py-24 bg-surface-container-low">
         <div className="max-w-7xl mx-auto px-6">
@@ -103,7 +31,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[600px]">
             <div className="md:col-span-8 group relative rounded-[2.5rem] overflow-hidden shadow-lg cursor-pointer">
-              <img alt="Agra Heritage" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx-7gZFVh4Q9P94nuT9G43Rpp3kG9S3X_fNocZRLG5VFT4Ae_cWj28Jg6-A0SNl8B8tWfQFNuZQ_Hsp9wZ5IQB_4QLTC_fMxIL8-CrAesKQerTAPfakuc_9jdUFTDKvibGuTWxworQ5WRY2cTQdzSsKoeknIDtLfddXWx3sYAz0woqeaKRHoFFc5QrDxtMo6KRhw-JVI6ZbhVhUFYh_xyybVZdui4Int0oDPusiVJNIM_4_nfg9RRnRADaOoMJqE5DTHKxYjf0hrk"/>
+              <img alt="Agra Heritage" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx-7gZFVh4Q9P94nuT9G43Rpp3kG9S3X_fNocZRLG5VFT4Ae_cWj28Jg6-A0SNl8B8tWfQFNuZQ_Hsp9wZ5IQB_4QLTC_fMxIL8-CrAesKQerTAPfakuc_9jdUFTDKvibGuTWxworQ5WRY2cTQdzSsKoeknIDtLfddXWx3sYAz0woqeaKRHoFFc5QrDxtMo6KRhw-JVI6ZbhVhUFYh_xyybVZdui4Int0oDPusiVJNIM_4_nfg9RRnRADaOoMJqE5DTHKxYjf0hrk" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10">
                 <span className="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full w-fit mb-3">BEST SELLER</span>
                 <h3 className="text-white font-headline text-3xl font-bold mb-2">Agra Heritage Tour</h3>
@@ -114,7 +42,7 @@ export default function Home() {
               </div>
             </div>
             <div className="md:col-span-4 group relative rounded-[2.5rem] overflow-hidden shadow-lg cursor-pointer">
-              <img alt="Rajasthan Royal" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlftMQteskIl6Dpp4DejiJHoF2dgI4wppxFBf8qdT7tSTuWo3shtz_02yhRJGFZ0aoZMi0Ksr5xl6pJWw9oCcM-dCeyxNxSzvfMng-OhBcm6GCZ3vr4AudxcLxYN3T5i9CVHTAC57yX1Nf1gdYzv0cdHA_CSfMYXuSa_TLwOdLaFa8LZpTiJ7KQX9v07LcGkYlcHQKr7MpGiKuAHHmDXBXTq4QCzWWdh8MLnVeC4AbhbHtQRJM6V9ZbWDYEE7CjrzXZ4Y-wMAVlQc"/>
+              <img alt="Rajasthan Royal" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlftMQteskIl6Dpp4DejiJHoF2dgI4wppxFBf8qdT7tSTuWo3shtz_02yhRJGFZ0aoZMi0Ksr5xl6pJWw9oCcM-dCeyxNxSzvfMng-OhBcm6GCZ3vr4AudxcLxYN3T5i9CVHTAC57yX1Nf1gdYzv0cdHA_CSfMYXuSa_TLwOdLaFa8LZpTiJ7KQX9v07LcGkYlcHQKr7MpGiKuAHHmDXBXTq4QCzWWdh8MLnVeC4AbhbHtQRJM6V9ZbWDYEE7CjrzXZ4Y-wMAVlQc" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
                 <h3 className="text-white font-headline text-xl font-bold mb-1">Rajasthan Royal Circuit</h3>
                 <p className="text-white/80 text-sm mb-4">7 Days • Luxury Heritage</p>
@@ -122,7 +50,7 @@ export default function Home() {
               </div>
             </div>
             <div className="md:col-span-4 group relative rounded-[2.5rem] overflow-hidden shadow-lg cursor-pointer">
-              <img alt="Himalayan Escapes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpH0VsorYZ0iTzoV8tLCnOpKc4oY3lHXL2oorlsEWy3D3_4A7we4OLaaKh1D7LizUGd7x6SRPJSqwUfC_G5UAnB1gRjRp4gTMCBG8YLMw8x3C3bMNTIec8y6FYcC6UkcYM192zsfai0-iFs3lQzWlat_FTGa63YQ0IHIU_zfKUbVO2pYBMIJQqV3ReZdjeGTcdOMDlxcHP9_3RoHePoEMXqqCute7x4kMr4sSmfAihQ0WUfP3jre1-pJtbgWte55FryoeMC7K6aEM"/>
+              <img alt="Himalayan Escapes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpH0VsorYZ0iTzoV8tLCnOpKc4oY3lHXL2oorlsEWy3D3_4A7we4OLaaKh1D7LizUGd7x6SRPJSqwUfC_G5UAnB1gRjRp4gTMCBG8YLMw8x3C3bMNTIec8y6FYcC6UkcYM192zsfai0-iFs3lQzWlat_FTGa63YQ0IHIU_zfKUbVO2pYBMIJQqV3ReZdjeGTcdOMDlxcHP9_3RoHePoEMXqqCute7x4kMr4sSmfAihQ0WUfP3jre1-pJtbgWte55FryoeMC7K6aEM" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
                 <h3 className="text-white font-headline text-xl font-bold mb-1">Himalayan Escapes</h3>
                 <p className="text-white/80 text-sm mb-4">5 Days • Nature &amp; Peace</p>
@@ -130,7 +58,7 @@ export default function Home() {
               </div>
             </div>
             <div className="md:col-span-8 group relative rounded-[2.5rem] overflow-hidden shadow-lg cursor-pointer">
-              <img alt="Spiritual India" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjC0yTTKLPxHuvzKyj4ZWFxBUF_hdIFONvpMFGw-_OrnDdHHphtCwoEleChJNd-qqwYy7YLkjxVGVR4CffFrIxGw7JhsEHG8pQpqWHlbuCjPNmZw4wVaJsSzTcZMXVeuL3ZT6K9UOsCgzdWFldCCr-fD29iCQChXW5VHPlRBSbBXSwI_dwFo8wPOj0wJdCLYnyX2HjxxSgW6gjij1nST8nwCqFJ4SIyx3EmbJIJoYf_KuG3Q9BQ0iQTRELtGz-7f4fz0nlECOu_T4"/>
+              <img alt="Spiritual India" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjC0yTTKLPxHuvzKyj4ZWFxBUF_hdIFONvpMFGw-_OrnDdHHphtCwoEleChJNd-qqwYy7YLkjxVGVR4CffFrIxGw7JhsEHG8pQpqWHlbuCjPNmZw4wVaJsSzTcZMXVeuL3ZT6K9UOsCgzdWFldCCr-fD29iCQChXW5VHPlRBSbBXSwI_dwFo8wPOj0wJdCLYnyX2HjxxSgW6gjij1nST8nwCqFJ4SIyx3EmbJIJoYf_KuG3Q9BQ0iQTRELtGz-7f4fz0nlECOu_T4" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10">
                 <h3 className="text-white font-headline text-2xl font-bold mb-1">Spiritual Varanasi</h3>
                 <p className="text-white/80">4 Days • Cultural Immersion</p>
@@ -231,7 +159,7 @@ export default function Home() {
           <div>
             <h4 className="font-bold text-on-surface mb-6">Our Location</h4>
             <div className="rounded-2xl overflow-hidden h-40 bg-surface-container-high relative">
-              <img alt="Agra Map" className="w-full h-full object-cover opacity-50 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsUnIeLwkre_DodcpzN8AcO9YS-M5ela0SwCDL8xNY5HgiZBTB3VKw7QvhhYgT3HYih8empMBp8Wa_dGeUH8b5CKkmkvtrhSxo4vE14-C8qFzZGUTf50t5OND8MkQT7dkCaJ3DuTeHn_IHAMhWvE6eY_JRuSWsLjrb7NEZ7RlROqM7dYbS986cwFK4qljRaLdzxOrvTbqEJsWW7iO5ryvDC4MJYNFKrkIYRN449jzoWhPf2sD5Dnsmqd4UKUmEbkjjMTM3m1aG9Y"/>
+              <img alt="Agra Map" className="w-full h-full object-cover opacity-50 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsUnIeLwkre_DodcpzN8AcO9YS-M5ela0SwCDL8xNY5HgiZBTB3VKw7QvhhYgT3HYih8empMBp8Wa_dGeUH8b5CKkmkvtrhSxo4vE14-C8qFzZGUTf50t5OND8MkQT7dkCaJ3DuTeHn_IHAMhWvE6eY_JRuSWsLjrb7NEZ7RlROqM7dYbS986cwFK4qljRaLdzxOrvTbqEJsWW7iO5ryvDC4MJYNFKrkIYRN449jzoWhPf2sD5Dnsmqd4UKUmEbkjjMTM3m1aG9Y" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="bg-white/80 backdrop-blur px-4 py-2 rounded-full font-bold text-primary shadow-sm">View Map</span>
               </div>
