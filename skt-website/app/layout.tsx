@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -30,7 +33,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${plusJakartaSans.variable} antialiased`}
       >
-        {children}
+        <Navbar />
+        <div className="min-h-screen">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );
