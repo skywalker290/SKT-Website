@@ -197,12 +197,8 @@ export default async function SearchPage({
                   <p className="text-sm text-gray-500 mb-4">Capacity: {bus.totalSeats} Seats • Mileage: {bus.mileage} km/l • Value: {bus.bus_value}</p>
                 </div>
 
-                {/* Price & Book */}
-                <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto gap-4 border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
-                  <div className="text-left md:text-right">
-                    <p className="text-2xl font-bold text-gray-900">₹{price}</p>
-                    <p className="text-xs text-gray-500">+ GST</p>
-                  </div>
+                {/* Book Action */}
+                <div className="flex flex-row md:flex-col items-center md:items-end justify-end w-full md:w-auto gap-4 border-t md:border-t-0 border-gray-100 pt-4 md:pt-0">
                   <Link 
                     href={{
                       pathname: '/book',
@@ -213,8 +209,7 @@ export default async function SearchPage({
                         stops,
                         departDate,
                         returnDate,
-                        passengers,
-                        price
+                        passengers
                       }
                     }}
                     className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-md transition-colors"

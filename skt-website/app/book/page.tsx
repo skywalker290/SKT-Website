@@ -147,46 +147,17 @@ export default async function BookingPage({
             </div>
           </div>
 
-          {/* Right Column: Price Summary */}
+          {/* Right Column: Booking Action */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Fare Summary</h2>
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between text-gray-600">
-                  <span>Base Fare</span>
-                  <span>₹{basePrice.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="flex justify-between text-gray-600">
-                  <span>GST (18%)</span>
-                  <span>₹{gst.toLocaleString('en-IN')}</span>
-                </div>
-                <div className="border-t border-gray-200 pt-3 flex justify-between font-bold text-lg text-gray-900">
-                  <span>Total Payable</span>
-                  <span>₹{totalPrice.toLocaleString('en-IN')}</span>
-                </div>
-              </div>
+              <h2 className="text-lg font-semibold text-gray-900 mb-4 border-b pb-2">Booking Action</h2>
+              <p className="text-sm text-gray-600 mb-6">
+                Fill in your details and our team will contact you with a customized quote and itinerary.
+              </p>
               
-              <button className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
-                Proceed to Pay
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
+                Confirm Enquiry
               </button>
-              
-              <GenerateBillButton 
-                tripDetails={{
-                  origin,
-                  destination,
-                  stops,
-                  departDate,
-                  returnDate,
-                  operator: bus.operator,
-                  type: bus.type,
-                  passengers
-                }}
-                fareDetails={{
-                  basePrice,
-                  gst,
-                  totalPrice
-                }}
-              />
               
               <div className="mt-4 flex items-start gap-2">
                 <div className="flex-shrink-0">
