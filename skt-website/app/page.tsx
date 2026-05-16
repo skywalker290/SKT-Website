@@ -2,7 +2,8 @@ import Navbar from "../components/Navbar";
 import ScrollReveal from "../components/ScrollReveal";
 import Hero from "../components/Hero";
 import FeaturedTours from "../components/FeaturedTours";
-
+import FleetMarquee from "../components/FleetMarquee";
+import TestimonialMarquee from "../components/TestimonialMarquee";
 export default function Home() {
   return (
     <main className="min-h-screen bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
@@ -10,6 +11,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <FeaturedTours />
+
+      {/* Separated Sections for better breathing room */}
+      <FleetMarquee />
+      <TestimonialMarquee />
 
       {/* Example Section utilizing our new Phase 4 scroll utilities */}
       <section className="py-24 px-6 max-w-5xl mx-auto text-center border-t border-gray-100">
@@ -178,64 +183,6 @@ export default function Home() {
             </div>
           </div>
         </ScrollReveal>
-      </section>
-
-      <section className="py-24 bg-surface-bright">
-        <div className="max-w-7xl mx-auto px-6">
-          <ScrollReveal direction="up" duration={0.8}>
-            <div className="text-center mb-16">
-              <h2 className="font-headline text-4xl font-extrabold tracking-tight mb-4">What Our Travelers Say</h2>
-              <div className="flex justify-center gap-1 text-secondary-container">
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-              </div>
-            </div>
-          </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ScrollReveal direction="up" delay={0.1} duration={0.6}>
-              <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
-                <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
-                <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"The Taj Mahal sunrise tour with Sri Kela was magical. Our guide Raj was incredibly knowledgeable. The luxury van was spotless and very comfortable for our family."</p>
-                <div className="flex items-center gap-4">
-                  <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK3dSMu6vyeL4dhsZ2rKRLlrh9jUWU3gkm5e7_Yh9XKuBKjXgwTKthYbs4jb7JKB_ONUlyggfFB5vHijsVY45H1C2dG1JUDp5admMSzrHrtRmEhiG-kdUStL0zi5DZLDNRy-sDU_bic6llScdkdF257CGwpOWJrtJ8Y1p1rcefh7S1BAAXV0C7AYS2sa5DTYZXzrOygWpYIgUexEfdUXbIPGOBXN_h_pwt1_nboqxU4e57hOBJ0Y6gRs1v4zzesST1XSEL4V-PHh4"/>
-                  <div>
-                    <h5 className="font-bold">David Richardson</h5>
-                    <p className="text-sm text-on-surface-variant">London, UK</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.2} duration={0.6}>
-              <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
-                <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
-                <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"Sri Kela Travels made our Rajasthan circuit a dream. No stress, just pure luxury and culture. Their 24/7 support was actually helpful when we wanted to change a dinner reservation."</p>
-                <div className="flex items-center gap-4">
-                  <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhhTfyytlhsHccxF_6p7BNXOQrl_i3K8B1by7GkrN_YDyhmUP7ejgWbDepiLxArBXAgsBW-KFfcGbwQTdsmUnac5ZOndhcaPcbffd7CFu3o7A_XmcL0HMdBkWYYjEXySz0EXTBnyHuQDoR2leUyKih2pTFsUb-QnnMWWULeVLa8b8SIOkJTmoktU0RqKS1RO2N3PSxxsqVxeCiRbhgUmyhJI87dn7TUH2iGhh1d48tvMprN9zxukBlzZYW1aDE-AlqKdDTDdu3Jec"/>
-                  <div>
-                    <h5 className="font-bold">Elena Martinez</h5>
-                    <p className="text-sm text-on-surface-variant">Madrid, Spain</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal direction="up" delay={0.3} duration={0.6}>
-              <div className="bg-white p-10 rounded-[2rem] shadow-sm border border-outline-variant/10 relative">
-                <span className="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/5 select-none">format_quote</span>
-                <p className="text-on-surface-variant italic leading-relaxed mb-8 relative z-10">"As a solo traveler, safety was my priority. Sri Kela Travels provided a fantastic female-led tour of Agra's bazaars. Highly recommended for authentic experiences!"</p>
-                <div className="flex items-center gap-4">
-                  <img alt="Customer" className="w-14 h-14 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs617pOkLkGNWJTcr-0mcacPf7YVaucOht6A_JH-vHRzJ0UUg0vRgUi9P45Z1sQKzFpHr5McMWRrrTy3rH4XUZf2nRZGUIEIAzZSrXLGMMDI8uqCMQ6yhcZ5lM7R7UtYAZe8jblSkskXqlNBghtwCiWd7X5yII_z_aqmTIpS4bmbPPeUuB_R7XK3S92aSiaTVEFzM7j1QZPn5EeaCcIWwk7H2fBc__t0jSbfX3HmXy70sBxYVMQBPgSkEDdNrm3VJOmngtJLhn1nQ"/>
-                  <div>
-                    <h5 className="font-bold">Sarah Jenkins</h5>
-                    <p className="text-sm text-on-surface-variant">Sydney, Australia</p>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
       </section>
 
       <footer className="bg-surface-container-low dark:bg-slate-900 full-width rounded-t-[2.5rem] mt-20">
