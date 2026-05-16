@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
+import { ReactNode } from "react";
 
 interface Service {
   id: string;
   title: string;
   description: string;
   image: string;
-  icon: JSX.Element;
+  icon: ReactNode;
 }
 
 const services: Service[] = [
