@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import ScrollReveal from "./ScrollReveal";
 import { cn } from "@/utils/cn";
+import { ReactNode } from "react";
 
 interface PromiseItem {
   id: string;
@@ -20,28 +21,28 @@ const promises: PromiseItem[] = [
     number: "01",
     title: "Immaculate Premium Fleet",
     description: "Every tempo traveller and bus in our lineup undergoes rigorous daily detailing and mechanical checks. You step into a pristine, climate-controlled environment every single time.",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop", // Luxury interior/exterior
+    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: "chauffeurs",
     number: "02",
     title: "Expert Local Chauffeurs",
     description: "Our drivers aren't just navigators; they are vetted professionals trained in defensive driving, multi-lingual communication, and elite hospitality.",
-    image: "https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?q=80&w=1200&auto=format&fit=crop", // Professional driver in suit
+    image: "https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: "pricing",
     number: "03",
     title: "Transparent Pricing",
     description: "Luxury shouldn't come with hidden fees. Your quote includes all state taxes, tolls, and parking. What we quote is exactly what you pay—down to the rupee.",
-    image: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=1200&auto=format&fit=crop", // Premium handshake or signing
+    image: "https://images.unsplash.com/photo-1601597111158-2fceff292cdc?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: "support",
     number: "04",
     title: "24/7 Concierge Support",
     description: "From the moment you book until you return home, a dedicated travel concierge is available around the clock to handle route changes, emergency support, or local recommendations.",
-    image: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=1200&auto=format&fit=crop", // Concierge / customer service
+    image: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=1200&auto=format&fit=crop",
   },
 ];
 
@@ -86,7 +87,6 @@ export default function OurPromise() {
                     sizes="50vw"
                     priority
                   />
-                  {/* Subtle Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal/40 to-transparent" />
                 </motion.div>
               </AnimatePresence>
@@ -94,58 +94,93 @@ export default function OurPromise() {
           </div>
 
           {/* RIGHT SIDE: The Interactive List */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center">
+          <div className="w-full md:w-1/2 flex flex-col">
             {promises.map((item, index) => (
-              <ScrollReveal key={item.id} direction="up" delay={index * 0.1}>
-                <div
-                  onMouseEnter={() => setActiveIndex(index)}
-                  className={cn(
-                    "group relative py-8 md:py-12 border-b border-gray-100 cursor-pointer transition-all duration-500",
-                    activeIndex === index ? "opacity-100" : "opacity-40 hover:opacity-100"
-                  )}
-                >
-                  <div className="flex gap-6 md:gap-8 items-start">
-                    {/* Giant Typography Number */}
-                    <span className={cn(
-                      "text-5xl md:text-7xl font-extrabold transition-colors duration-500",
-                      activeIndex === index ? "text-brand-gold" : "text-gray-200"
-                    )}>
-                      {item.number}
-                    </span>
-                    
-                    <div>
-                      <h4 className="text-2xl md:text-3xl font-bold text-brand-charcoal mb-3 transition-transform duration-500 group-hover:translate-x-2">
-                        {item.title}
-                      </h4>
-                      {/* Mobile Image (Only shows on mobile since left side is hidden) */}
-                      <div className="md:hidden w-full h-[200px] relative rounded-xl overflow-hidden mb-4 mt-4">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <p className="text-gray-600 leading-relaxed max-w-md">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Active Indicator Line */}
-                  {activeIndex === index && (
-                    <motion.div
-                      layoutId="activePromiseLine"
-                      className="absolute left-0 bottom-0 w-full h-[2px] bg-brand-gold"
-                    />
-                  )}
-                </div>
-              </ScrollReveal>
+              <PromiseItemCard 
+                key={item.id} 
+                item={item} 
+                index={index} 
+                isActive={activeIndex === index}
+                setActiveIndex={setActiveIndex}
+              />
             ))}
           </div>
 
         </div>
       </div>
     </section>
+  );
+}
+
+function PromiseItemCard({ 
+  item, 
+  index, 
+  isActive, 
+  setActiveIndex 
+}: { 
+  item: PromiseItem; 
+  index: number; 
+  isActive: boolean; 
+  setActiveIndex: (i: number) => void;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    margin: "-40% 0px -40% 0px", // Trigger when the item is in the middle 20% of the screen
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      setActiveIndex(index);
+    }
+  }, [isInView, index, setActiveIndex]);
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setActiveIndex(index)}
+      className={cn(
+        "group relative py-12 md:py-20 border-b border-gray-100 cursor-pointer transition-all duration-500",
+        isActive ? "opacity-100" : "opacity-30 hover:opacity-100"
+      )}
+    >
+      <div className="flex gap-6 md:gap-8 items-start">
+        {/* Giant Typography Number */}
+        <span className={cn(
+          "text-5xl md:text-7xl font-extrabold transition-colors duration-500",
+          isActive ? "text-brand-gold" : "text-gray-200"
+        )}>
+          {item.number}
+        </span>
+        
+        <div className="flex-1">
+          <h4 className="text-2xl md:text-3xl font-bold text-brand-charcoal mb-4 transition-transform duration-500 group-hover:translate-x-2">
+            {item.title}
+          </h4>
+          
+          {/* Mobile Image */}
+          <div className="md:hidden w-full h-[250px] relative rounded-2xl overflow-hidden mb-6 mt-4 shadow-lg">
+            <Image
+              src={item.image}
+              alt={item.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          <p className="text-gray-600 leading-relaxed max-w-md text-lg">
+            {item.description}
+          </p>
+        </div>
+      </div>
+      
+      {/* Active Indicator Line */}
+      {isActive && (
+        <motion.div
+          layoutId="activePromiseLine"
+          className="absolute left-0 bottom-0 w-full h-[3px] bg-brand-gold"
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
+      )}
+    </div>
   );
 }
